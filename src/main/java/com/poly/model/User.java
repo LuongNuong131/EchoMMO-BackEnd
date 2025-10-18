@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users") // Đổi tên bảng thành 'users' (tránh trùng từ khóa 'user')
 public class User {
 
     @Id

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
+<head>
+    <meta charset="UTF-8">
+    <title>EchoMMO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="home-container">
+    <header class="header">
+        <div class="logo">
+            Echo<span class="highlight">MMO</span>
+        </div>
+        <div class="nav-actions">
+            <button class="icon-btn"><i class="fas fa-bell"></i></button>
+
+            <div sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}" class="icon-btn" style="text-decoration: none;">
+                    <i class="fas fa-sign-in-alt"></i>
+                </a>
+            </div>
+
+            <div sec:authorize="isAuthenticated()">
+                <button class="icon-btn" id="account-toggle">
+                    <i class="fas fa-user"></i>
+                </button>
+                <div class="account-menu" id="account-menu" style="display: none;">
+                    <span style="padding: 10px 14px; color: #fff; font-weight: bold;"
+                          sec:authentication="name">Username</span>
+                    <hr style="border-color: #333; margin: 0;">
+
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" style="width: 100%;">
+                            <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a href="#">Marketplace</a></li>
+                <li><a href="#">Inventory</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+        </aside>
+
+		<main class="main-content">
+		    <div th:replace="~{${content}}"></div>
+		</main>
+    </div>
+
+    <footer class="footer">
+        © 2025 EchoMMO. All rights reserved.
+    </footer>
+</div>
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+document.addEventListener("DOMContentLoaded", function() {
+    const toggle = document.getElementById('account-toggle');
+    const menu = document.getElementById('account-menu');
+
+    if(toggle && menu) {
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            menu.style.display = menu.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        document.addEventListener('click', function(e) {
+            if (menu.style.display === 'flex' && !menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.style.display = 'none';
+            }
+        });
+    }
+});
+/*]]>*/
+</script>
+</body>
+</html>
