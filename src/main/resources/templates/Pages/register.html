@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký EchoMMO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/register.css">        
+</head>
+<body>
+<div class="auth-page">
+    <div class="ring">
+        <i style="--clr:#00ff0a;"></i>
+        <i style="--clr:#ff0057;"></i>
+        <i style="--clr:#fffd44;"></i>
+
+        <div class="register">
+            <h2>Đăng Ký</h2>
+            
+            <div th:if="${error}" class="message-box error">
+                <p th:text="${error}"></p>
+            </div>
+            
+            <form method="POST" action="/register" class="register">
+                
+                <div class="inputBx">
+                    <input type="text" name="full_name" placeholder="Họ và Tên" required />
+                </div>
+                <div class="inputBx">
+                    <input type="text" name="username" placeholder="Tên đăng nhập" required />
+                </div>
+                <div class="inputBx">
+                    <input type="email" name="email" placeholder="Email" required />
+                </div>
+                <div class="inputBx">
+                    <input type="password" name="password" placeholder="Mật khẩu" required />
+                </div>
+                <div class="inputBx">
+                    <input type="password" name="confirm" placeholder="Xác nhận mật khẩu" required />
+                </div>
+                <div class="inputBx">
+                    <button type="submit" class="btn-submit">Đăng Ký</button>
+                </div>
+                
+                <div class="links">
+                    <a href="/login">Đã có tài khoản? Đăng nhập</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
