@@ -1,0 +1,48 @@
+<header class="header" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
+    <a th:href="@{/}" class="logo">Echo<span class="highlight">MMO</span></a>
+    <div class="nav-actions">
+        <div th:if="${#authentication.principal instanceof T(com.poly.security.CustomUserDetails) and #authentication.principal.getUser().wallet != null}" class="wallet-info">
+            <i class="fas fa-coins"></i>
+            <span id="headerGold" th:text="${#numbers.formatDecimal(#authentication.principal.getUser().wallet.balance, 1, 'COMMA', 2, 'POINT')}">0.00</span>
+        </div>
+        <div th:unless="${#authentication.principal instanceof T(com.poly.security.CustomUserDetails) and #authentication.principal.getUser().wallet != null}" class="wallet-info">
+             <i class="fas fa-coins"></i>
+             <span id="headerGold">N/A</span>
+         </div>
+
+        <button class="icon-btn" title="Marketplace" onclick="location.href='/marketplace'">
+            <i class="fas fa-store"></i>
+        </button>
+        <button class="icon-btn" title="Inventory" onclick="location.href='/inventory'">
+            <i class="fas fa-box"></i>
+        </button>
+        <button class="icon-btn" title="Minigame" onclick="location.href='/minigame'">
+             <i class="fas fa-gamepad"></i>
+        </button>
+
+        <div class="account-menu">
+            <button type="button" class="account-btn icon-btn" aria-label="Account Menu">
+                 <i class="fas fa-user"></i>
+            </button>
+            <div class="dropdown">
+                <a th:href="@{/profile}">
+                    <i class="fas fa-user-edit"></i> Hồ sơ
+                </a>
+                <a th:href="@{/inventory}">
+                     <i class="fas fa-box"></i> Kho đồ
+                </a>
+                <a th:href="@{/marketplace/my-listings}">
+                    <i class="fas fa-tags"></i> Đang bán
+                </a>
+                <a th:href="@{/admin/dashboard}" sec:authorize="hasRole('ADMIN')">
+                    <i class="fas fa-crown"></i> Admin Panel
+                </a>
+                <form th:action="@{/logout}" method="post" style="margin:0;">
+                    <button type="submit" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>

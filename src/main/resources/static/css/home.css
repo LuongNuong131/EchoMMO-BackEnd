@@ -1,0 +1,200 @@
+/* ===================== BODY & CONTAINER ===================== */
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1f2937 100%);
+    font-family: "Poppins", Arial, sans-serif;
+    color: white;
+    height: 100vh;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ===================== HEADER ===================== */
+.header {
+    background-color: #1f2937;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border-bottom: 1px solid #374151;
+}
+
+.logo {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+.highlight {
+    color: #10b981;
+}
+
+/* ===================== NAV ACTIONS ===================== */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.icon-btn:hover {
+    color: #10b981;
+}
+
+/* ===================== ACCOUNT DROPDOWN ===================== */
+.account-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.account-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.account-btn:hover {
+    background-color: #10b981;
+    color: #fff;
+}
+
+.dropdown {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    min-width: 180px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown a,
+.dropdown button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    color: #d1d5db;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 0.95em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown a:hover,
+.dropdown button:hover {
+    background-color: #10b981;
+    color: #fff;
+    border-radius: 6px;
+}
+
+/* ===================== MAIN WRAPPER ===================== */
+.main-wrapper {
+    display: flex;
+    flex: 1;
+    height: calc(100% - 60px); /* trừ header */
+    position: relative;
+}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+    width: 20%;
+    background-color: #1f2937;
+    border-right: 1px solid #374151;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    color: #10b981;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.sidebar a {
+    display: block;
+    color: #d1d5db;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #10b981;
+    color: #fff;
+}
+
+/* ===================== MAIN CONTENT ===================== */
+.main-content {
+    width: 80%;
+    padding: 40px;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.main-content h1 {
+    color: #10b981;
+    margin-bottom: 20px;
+}
+
+.main-content p {
+    font-size: 1.1em;
+    color: #9ca3af;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+    .main-wrapper {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #374151;
+    }
+    .main-content {
+        width: 100%;
+        padding: 20px;
+    }
+}

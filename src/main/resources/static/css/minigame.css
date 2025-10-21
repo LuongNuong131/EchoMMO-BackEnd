@@ -1,0 +1,140 @@
+@keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px) rotate(-5deg); }
+    20%, 40%, 60%, 80% { transform: translateX(5px) rotate(5deg); }
+}
+
+.access.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Minigame Container */
+.minigame-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Character Panel */
+.character-panel {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-lg);
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.character-panel h2 {
+    margin-top: 0;
+    color: var(--primary);
+}
+
+.char-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-around;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-item span:first-child {
+    color: var(--text-muted);
+    font-size: 0.9em;
+    margin-bottom: 0.5rem;
+}
+
+.stat-item span:last-child {
+    color: var(--text-light);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Game Area */
+.game-area {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.playground {
+    height: 200px;
+    background: linear-gradient(180deg, #374151, #1f2937);
+    border-radius: var(--border-radius-md);
+    position: relative;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.character {
+    position: absolute;
+    bottom: 20px;
+    left: 48px;
+    font-size: 48px;
+    transition: left 0.8s ease;
+}
+
+.access {
+    position: absolute;
+    bottom: 20px;
+    font-size: 48px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.game-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.btn-adventure {
+    background: var(--primary);
+}
+
+.btn-gather {
+    background: var(--warning);
+}
+
+.btn-rest {
+    background: var(--info);
+}
+
+.message-box {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: var(--border-radius-md);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    text-align: center;
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-potion {
+    background: #a855f7;
+}

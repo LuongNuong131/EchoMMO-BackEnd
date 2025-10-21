@@ -1,46 +1,114 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EchoMMO - Home</title>
-    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* CSS styles giữ nguyên */
+        .quick-links {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .quick-card {
+            background: var(--bg-card, #fff);
+            border: 1px solid var(--border-color, #e0e0e0);
+            padding: 2rem 1.5rem;
+            border-radius: var(--border-radius-lg, 12px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 180px;
+        }
+        .quick-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow-color, rgba(0,0,0,0.1));
+            border-color: var(--primary, #4CAF50);
+        }
+        .quick-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            color: var(--primary, #4CAF50);
+        }
+        .quick-card h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: var(--text-light, #333);
+            font-size: 1.2em;
+        }
+        .quick-card p {
+            color: var(--text-muted, #666);
+            font-size: 0.9em;
+            margin: 0;
+        }
+        .welcome-message {
+            margin-bottom: 2rem;
+            font-size: 1.2em;
+            color: var(--text-muted, #666);
+        }
+        .welcome-message strong {
+            color: var(--primary, #4CAF50);
+        }
+    </style>
 </head>
 <body>
-<div class="home-container">
-    <header class="header">
-        <div class="logo">
-            Echo<span class="highlight">MMO</span>
+    <div class="home-container">
+        <div th:replace="~{fragments/header :: header}"></div>
+
+        <div class="layout">
+            <div th:replace="~{fragments/sidebar :: sidebar(activePage='home')}"></div>
+
+            <main class="main-content">
+                <h1>Chào mừng trở lại!</h1>
+                <p class="welcome-message">
+                    Xin chào,
+                    <strong th:if="${#authentication.principal instanceof T(com.poly.security.CustomUserDetails)}"
+                            th:text="${#authentication.principal.getUser().username}">Player</strong>
+                    <strong th:unless="${#authentication.principal instanceof T(com.poly.security.CustomUserDetails)}"
+                            th:text="${#authentication.name}">Player</strong>!
+                    Bạn muốn làm gì hôm nay?
+                </p>
+
+                <div class="quick-links">
+                    <div class="quick-card" th:onclick="'location.href=\'' + @{/minigame} + '\''">
+                        <i class="fas fa-compass"></i>
+                        <h3>Phiêu lưu</h3>
+                        <p>Khám phá thế giới, chiến đấu và thu thập.</p>
+                    </div>
+
+                    <div class="quick-card" th:onclick="'location.href=\'' + @{/marketplace} + '\''">
+                        <i class="fas fa-store"></i>
+                        <h3>Marketplace</h3>
+                        <p>Mua bán vật phẩm với người chơi khác.</p>
+                    </div>
+
+                    <div class="quick-card" th:onclick="'location.href=\'' + @{/inventory} + '\''">
+                        <i class="fas fa-box-open"></i>
+                        <h3>Kho đồ</h3>
+                        <p>Quản lý vật phẩm và trang bị của bạn.</p>
+                    </div>
+
+                    <div class="quick-card" th:onclick="'location.href=\'' + @{/profile} + '\''">
+                        <i class="fas fa-user-cog"></i>
+                        <h3>Hồ sơ</h3>
+                        <p>Xem thông tin và nâng cấp nhân vật.</p>
+                    </div>
+                </div>
+            </main>
         </div>
-        <div class="nav-actions">
-            <button class="icon-btn"><i class="fas fa-bell"></i></button>
-            <span sec:authentication="name" style="color: white; margin-right: 15px;">User</span>
-            <form th:action="@{/logout}" method="post" style="display:inline;">
-                <button class="icon-btn" type="submit">
-                    <i class="fas fa-sign-out-alt"></i>
-                </button>
-            </form>
-        </div>
-    </header>
-    
-    <main class="main-content" style="padding: 40px; text-align: center; color: white;">
-        <h1>🎮 Welcome to EchoMMO!</h1>
-        <p style="font-size: 1.2em; margin-top: 20px;">
-            Logged in as: <strong sec:authentication="name">Username</strong>
-        </p>
-        <div style="margin-top: 40px;">
-            <a href="#" style="color: #10b981; text-decoration: none; font-size: 1.1em; margin: 0 15px;">
-                <i class="fas fa-store"></i> Marketplace
-            </a>
-            <a href="#" style="color: #10b981; text-decoration: none; font-size: 1.1em; margin: 0 15px;">
-                <i class="fas fa-box"></i> Inventory
-            </a>
-            <a href="#" style="color: #10b981; text-decoration: none; font-size: 1.1em; margin: 0 15px;">
-                <i class="fas fa-user"></i> Profile
-            </a>
-        </div>
-    </main>
-</div>
+
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </div>
+
+    <script th:src="@{/js/common.js}"></script>
+    <script th:src="@{/js/header.js}"></script>
 </body>
 </html>

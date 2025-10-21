@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
 * {
     margin: 0;
     padding: 0;
@@ -18,6 +20,7 @@ body {
     width: 100%;
 }
 
+/* Hiệu ứng vòng neon */
 .ring {
     position: relative;
     width: 500px;
@@ -64,27 +67,33 @@ body {
     100% { transform: rotate(0deg); }
 }
 
-.register {
+/* Form đăng ký */
+.register-box {
     position: absolute;
     width: 320px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
 }
 
-.register h2 {
+.register-box h2 {
     font-size: 2em;
     color: #fff;
 }
 
-.register .inputBx {
+.register-form {
     width: 100%;
-    /* margin-bottom: 10px; (Đã bị ghi đè bởi gap, có thể bỏ) */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.register .inputBx input {
+.inputBx {
+    width: 100%;
+}
+
+.inputBx input {
     width: 100%;
     padding: 10px 20px;
     background: transparent;
@@ -96,11 +105,11 @@ body {
     transition: 0.3s;
 }
 
-.register .inputBx input::placeholder {
+.inputBx input::placeholder {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.register .btn-submit {
+.btn-submit {
     width: 100%;
     padding: 10px;
     border: none;
@@ -110,10 +119,11 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
-    font-size: 1.1em; /* Thêm cho đồng bộ */
+    font-size: 1.1em;
 }
 
-.register .btn-submit:hover {
+.btn-submit:hover {
+    transform: scale(1.05);
     opacity: 0.9;
 }
 
@@ -133,7 +143,7 @@ body {
     color: #ff357a;
 }
 
-/* CSS cho thông báo */
+/* Thông báo lỗi */
 .message-box {
     width: 100%;
     padding: 10px;
@@ -144,5 +154,5 @@ body {
 
 .error {
     color: #fff;
-    background-color: #e53935; /* Màu đỏ */
+    background-color: #e53935;
 }

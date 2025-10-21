@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Đăng ký EchoMMO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/register.css}">
+    <style>
+        /* Giữ lại style cho message-box */
+        .message-box { padding: 10px; text-align: center; border-radius: 5px; font-weight: bold; margin-bottom: 15px; }
+        .error { color: #fff; background-color: #e53935; }
+        .success { color: #111; background-color: #00ff0a; }
+    </style>
 </head>
 <body>
 <div class="auth-page">
@@ -13,23 +18,19 @@
         <i style="--clr:#ff0057;"></i>
         <i style="--clr:#fffd44;"></i>
 
-        <div class="register">
+        <div class="register-box">
             <h2>Đăng Ký</h2>
-            
-            <div th:if="${error}" class="message-box error">
-                <p th:text="${error}"></p>
-            </div>
-            
-            <form method="POST" th:action="@{/register}" class="register">
-                
+
+            <div th:if="${error}" class="message-box error" th:text="${error}"></div>
+            <form method="POST" th:action="@{/register}" class="register-form">
                 <div class="inputBx">
-                    <input type="text" name="full_name" placeholder="Họ và Tên" required />
+                    <input type="text" name="full_name" placeholder="Họ và Tên" required th:value="${param.full_name}"/>
                 </div>
                 <div class="inputBx">
-                    <input type="text" name="username" placeholder="Tên đăng nhập" required />
+                    <input type="text" name="username" placeholder="Tên đăng nhập" required th:value="${param.username}"/>
                 </div>
                 <div class="inputBx">
-                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="email" name="email" placeholder="Email" required th:value="${param.email}"/>
                 </div>
                 <div class="inputBx">
                     <input type="password" name="password" placeholder="Mật khẩu" required />
@@ -40,14 +41,13 @@
                 <div class="inputBx">
                     <button type="submit" class="btn-submit">Đăng Ký</button>
                 </div>
-                
+
                 <div class="links">
-                    <a href="/login">Đã có tài khoản? Đăng nhập</a>
+                    <a th:href="@{/login}">Đã có tài khoản? Đăng nhập</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
 </body>
 </html>
